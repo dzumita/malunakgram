@@ -1,4 +1,7 @@
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+
+import colors from '../constants/colors';
 
 type NavigationBarType = {
   title: string;
@@ -14,20 +17,24 @@ const NavigationBar = ({
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.leftText} onPress={onPressLeftText}>
-        <Text>{leftText}</Text>
+        <Text style={styles.text}>{leftText}</Text>
       </TouchableOpacity>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.text, styles.title]}>{title}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: colors.dark,
     height: 40,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'rgba(0,0,0,0.1)',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text: {
+    color: colors.gray,
   },
   title: {
     fontWeight: '500',

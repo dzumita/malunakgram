@@ -1,15 +1,16 @@
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import React from 'react';
 
 import CommentInput from '../components/CommentInput';
 import CommentList from '../components/CommentList';
 import NavigationBar from '../components/NavigationBar';
+import colors from '../constants/colors';
 
 type CommentsType = {
-  style: any;
-  comments: any;
+  style: StyleProp<ViewStyle>;
+  comments: string[];
   onClose: () => void;
-  onSubmitComment: () => void;
+  onSubmitComment: (text: string) => Promise<void>;
 };
 
 const Comments = ({
@@ -19,7 +20,7 @@ const Comments = ({
   onSubmitComment,
 }: CommentsType) => {
   return (
-    <SafeAreaView style={style}>
+    <SafeAreaView style={[styles.container, style]}>
       <NavigationBar
         title="Comments"
         leftText="Close"
@@ -30,5 +31,11 @@ const Comments = ({
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.lightDark,
+  },
+});
 
 export default Comments;

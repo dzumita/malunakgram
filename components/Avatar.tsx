@@ -1,5 +1,5 @@
 import React from 'react';
-import {ColorPropType, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 type AvatarType = {
   initials: string;
@@ -8,7 +8,7 @@ type AvatarType = {
 };
 
 const Avatar = ({initials, size, backgroundColor}: AvatarType) => {
-  const style: any = {
+  const style = {
     width: size,
     height: size,
     borderRadius: size / 2,

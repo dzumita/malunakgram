@@ -8,6 +8,7 @@ import {
 import React, {useState} from 'react';
 
 import AuthorRow from './AuthorRow';
+import colors from '../constants/colors';
 
 type CardType = {
   fullname: string;
@@ -27,12 +28,7 @@ const Card = ({
   const handleLoad = () => setLoading(false);
 
   return (
-    <View>
-      <AuthorRow
-        fullname={fullname}
-        linkText={linkText}
-        onPressLinkText={onPressLinkText}
-      />
+    <View style={styles.container}>
       <View style={styles.image}>
         {loading && (
           <ActivityIndicator style={StyleSheet.absoluteFill} size={'large'} />
@@ -43,11 +39,20 @@ const Card = ({
           onLoad={handleLoad}
         />
       </View>
+      <AuthorRow
+        fullname={fullname}
+        linkText={linkText}
+        onPressLinkText={onPressLinkText}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.dark,
+    marginBottom: 25
+  },
   image: {
     aspectRatio: 1,
     backgroundColor: 'rgba(0,0,0,0.02)',

@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import PropTypes from 'prop-types';
 
 import Avatar from './Avatar';
 import getAvatarColor from '../utils/getAvatarColor';
 import getInitials from '../utils/getInitials';
+import colors from '../constants/colors';
 
 type AuthorRowType = {
   fullname: string;
@@ -21,13 +21,15 @@ const AuthorRow = ({fullname, linkText, onPressLinkText}: AuthorRowType) => {
         backgroundColor={getAvatarColor(fullname)}
       />
 
-      <Text style={styles.text} numberOfLines={1}>
+      <Text style={[styles.text, styles.fullname]} numberOfLines={1}>
         {fullname}
       </Text>
 
       {!!linkText && (
         <TouchableOpacity onPress={onPressLinkText}>
-          <Text numberOfLines={1}>{linkText}</Text>
+          <Text style={styles.text} numberOfLines={1}>
+            {linkText}
+          </Text>
         </TouchableOpacity>
       )}
     </View>
@@ -42,6 +44,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   text: {
+    color: colors.gray,
+  },
+  fullname: {
     flex: 1,
     marginHorizontal: 6,
   },

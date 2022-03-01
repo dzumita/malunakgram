@@ -1,14 +1,18 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
+import colors from '../constants/colors';
+
 type CommentListType = {
-  items: any;
+  items: string[];
 };
 
 const CommentList = ({items}: CommentListType) => {
-  const renderItem = (item: string, index: string) => (
+  console.log(items);
+
+  const renderItem = (item: string, index: number) => (
     <View key={index} style={styles.comment}>
-      <Text>{item}</Text>
+      <Text style={styles.text}>{item}</Text>
     </View>
   );
 
@@ -17,11 +21,16 @@ const CommentList = ({items}: CommentListType) => {
 
 const styles = StyleSheet.create({
   comment: {
-    marginLeft: 20,
-    paddingVertical: 20,
-    paddingRight: 20,
+    backgroundColor: colors.dark,
+    paddingLeft: 20,
+    paddingVertical: 10,
+    paddingRight: 10,
+    marginBottom: 10,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'rgba(0,0,0,0.05)',
+  },
+  text: {
+    color: colors.gray,
   },
 });
 

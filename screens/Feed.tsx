@@ -1,13 +1,29 @@
-import {ActivityIndicator, Text, SafeAreaView} from 'react-native';
-
 import React, {useState, useEffect} from 'react';
+import {
+  ActivityIndicator,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  StyleProp,
+  ViewStyle, 
+} from 'react-native';
+
 import {fetchImages} from '../utils/api';
 import CardList from '../components/CardList';
+import colors from '../constants/colors';
 
-const Feed = ({style = null}) => {
+type FeedType = {
+  style: StyleProp<ViewStyle>;
+  commentsForItem: string[];
+  onPressComments: (id: number) => void;
+};
+
+const Feed = ({style = null, commentsForItem, onPressComments}: FeedType) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [items, setItems] = useState([]);
+
+  console.log('H:', commentsForItem);
 
   useEffect(() => {
     (async () => {
@@ -21,7 +37,7 @@ const Feed = ({style = null}) => {
         setError(true);
       }
     })();
-  });
+  }, []);
 
   if (loading) {
     return <ActivityIndicator size="large" />;
@@ -32,10 +48,20 @@ const Feed = ({style = null}) => {
   }
 
   return (
-    <SafeAreaView style={style}>
-      <CardList items={items} />
+    <SafeAreaView style={[styles.container, style]}>
+      <CardList
+        items={items}
+        commentsForItem={commentsForItem}
+        onPressComments={onPressComments}
+      />
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.lightDark,
+  },
+});
 
 export default Feed;

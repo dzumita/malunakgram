@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
 
+import colors from '../constants/colors';
+
 type CommentInput = {
   onSubmit: (text: string) => void;
   placeholder: string;
@@ -22,6 +24,7 @@ const CommentInput = ({placeholder = '', onSubmit}: CommentInput) => {
         style={styles.input}
         value={text}
         placeholder={placeholder}
+        placeholderTextColor={colors.gray}
         underlineColorAndroid="transparent"
         onChangeText={setText}
         onSubmitEditing={handleSubmitEditing}
@@ -39,6 +42,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    color: colors.gray,
   },
 });
 
