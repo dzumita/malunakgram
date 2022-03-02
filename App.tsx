@@ -7,12 +7,14 @@ import Comments from './screens/Comments';
 
 const ASYNC_STORAGE_COMMENTS_KEY = 'ASYNC_STORAGE_COMMENTS_KEY';
 
+type commentsForItemType = {[key: string]: string[]};
+
 const App = () => {
-  const [commentsForItem, setCommentsForItem] = useState({});
+  const [commentsForItem, setCommentsForItem] = useState<commentsForItemType>(
+    {},
+  );
   const [showModal, setShowModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(-1);
-
-  console.log('com', commentsForItem);
 
   useEffect(() => {
     (async () => {

@@ -8,7 +8,7 @@ type CommentListType = {
 };
 
 const CommentList = ({items}: CommentListType) => {
-  console.log(items);
+  console.log('items:', items);
 
   const renderItem = (item: string, index: number) => (
     <View key={index} style={styles.comment}>

@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   StyleSheet,
   StyleProp,
-  ViewStyle, 
+  ViewStyle,
 } from 'react-native';
 
 import {fetchImages} from '../utils/api';
@@ -14,7 +14,7 @@ import colors from '../constants/colors';
 
 type FeedType = {
   style: StyleProp<ViewStyle>;
-  commentsForItem: string[];
+  commentsForItem: {[key: string]: string[]};
   onPressComments: (id: number) => void;
 };
 
@@ -22,8 +22,6 @@ const Feed = ({style = null, commentsForItem, onPressComments}: FeedType) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [items, setItems] = useState([]);
-
-  console.log('H:', commentsForItem);
 
   useEffect(() => {
     (async () => {
